@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { Box, Flex, Button, Image } from "@chakra-ui/react";
+import { Box, Flex, Button, Image, useBreakpointValue } from "@chakra-ui/react";
 import { CreateEventModal } from "../components/CreateEventModal";
 import { UpdateEventModal } from "../components/UpdateEventModal";
 import { AuthHeader } from "../components/AuthHeader";
@@ -24,6 +24,11 @@ const Calendar = () => {
   const [updateEndDate, setEndDate] = useState("");
   const [eventId, setEventId] = useState("");
   const navigate = useNavigate();
+  const calendarHeight = useBreakpointValue({ base: "auto", md: "95vh" });
+  const toolbar = useBreakpointValue({
+    base: { left: "today", center: "title", right: "prev,next" },
+    md: { left: "today", center: "title", right: "prev,next" },
+  });
 
   const clearEvents = async () => {
     try {
@@ -131,37 +136,42 @@ const Calendar = () => {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-      <Flex justifyContent="center" mt="16px">
+      <Flex
+        justifyContent="center"
+        mt="16px"
+        px={{ base: "4", md: "8" }}
+        gap={{ base: "4", md: "6" }}
+        direction={{ base: "column", md: "row" }}
+      >
         <Flex
-          w="200px"
+          w={{ base: "100%", md: "200px" }}
           justifyContent="center"
           alignItems="center"
-          flexDirection="column"
+          flexDirection={{ base: "row", md: "column" }}
+          gap={{ base: "3", md: "0" }}
         >
           <Button
-            w="80%"
+            w={{ base: "auto", md: "80%" }}
             colorPalette="blue"
             onClick={() => setIsCreateModalOpen(true)}
           >
             予定を追加
           </Button>
-          <Image src="calendar-view.png" />
+          <Image src="calendar-view.png" maxW={{ base: "120px", md: "100%" }} />
         </Flex>
-        <Box w="1200px">
-          <FullCalendar
-            plugins={[dayGridPlugin]}
-            locale="ja"
-            events={events}
-            headerToolbar={{
-              left: "today",
-              center: "title",
-              right: "prev,next",
-            }}
-            eventClick={eventClick}
-            editable={true}
-            selectable={true}
-            height="95vh"
-          />
+        <Box w="100%" maxW="1200px" overflowX="auto">
+          <Box minW={{ base: "700px", md: "auto" }}>
+            <FullCalendar
+              plugins={[dayGridPlugin]}
+              locale="ja"
+              events={events}
+              headerToolbar={toolbar}
+              eventClick={eventClick}
+              editable={true}
+              selectable={true}
+              height={calendarHeight}
+            />
+          </Box>
         </Box>
       </Flex>
     </>

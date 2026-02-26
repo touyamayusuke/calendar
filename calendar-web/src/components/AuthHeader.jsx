@@ -20,9 +20,15 @@ export const AuthHeader = ({ isLoggedIn = false }) => {
   };
 
   return (
-    <Box w="100%" borderBottom="1px solid" borderColor="gray.200" px="6" py="3">
+    <Box
+      w="100%"
+      borderBottom="1px solid"
+      borderColor="gray.200"
+      px={{ base: "4", md: "6" }}
+      py="3"
+    >
       <Flex justifyContent="space-between" alignItems="center">
-        <Text fontWeight="bold" color="blue.500">
+        <Text fontWeight="bold" color="blue.500" fontSize={{ base: "md", md: "lg" }}>
           カレンダーアプリ
         </Text>
         {isLoggedIn ? (

@@ -47,28 +47,34 @@ const App = () => {
   return (
     <>
       <AuthHeader isLoggedIn={false} />
-      <Flex h="calc(100vh - 61px)">
+      <Flex
+        minH="calc(100vh - 61px)"
+        direction={{ base: "column", md: "row" }}
+        px={{ base: "4", md: "8" }}
+        py={{ base: "6", md: "0" }}
+        gap={{ base: "8", md: "0" }}
+      >
         {/* 画像 */}
         <Flex
-          w="50%"
+          w={{ base: "100%", md: "50%" }}
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
         >
-          <Image w="400px" src="calendar.png" />
-          <Text fontSize="32px" color="blue.500" fontWeight="bold">
+          <Image w={{ base: "220px", md: "400px" }} src="calendar.png" />
+          <Text fontSize={{ base: "24px", md: "32px" }} color="blue.500" fontWeight="bold">
             カレンダーアプリ
           </Text>
         </Flex>
         {/* フォーム */}
         <Flex
-          w="50%"
+          w={{ base: "100%", md: "50%" }}
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
         >
-          <Box w="400px">
-            <Text fontSize="24px" color="gray.700" fontWeight="bold" mb="24px">
+          <Box w="100%" maxW="400px">
+            <Text fontSize={{ base: "22px", md: "24px" }} color="gray.700" fontWeight="bold" mb="24px">
               ログインページ
             </Text>
             <Input
@@ -81,9 +87,10 @@ const App = () => {
               placeholder="パスワード"
               mb="16px"
               value={password}
+              type="password"
               onChange={(event) => setPassword(event.target.value)}
             />
-            <Button w="400px" colorPalette="blue" mb="8px" onClick={login}>
+            <Button w="100%" colorPalette="blue" mb="8px" onClick={login}>
               ログインする
             </Button>
             <Box textAlign="right">

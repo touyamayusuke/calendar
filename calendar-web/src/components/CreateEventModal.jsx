@@ -39,7 +39,7 @@ export const CreateEventModal = ({ isOpen, onClose, createEvent }) => {
       <Portal>
         <DialogBackdrop />
         <DialogPositioner>
-          <DialogContent>
+          <DialogContent w="calc(100% - 2rem)" maxW="500px" mx="4">
             <DialogHeader>
               <DialogTitle>イベントを追加</DialogTitle>
             </DialogHeader>
@@ -75,8 +75,9 @@ export const CreateEventModal = ({ isOpen, onClose, createEvent }) => {
           />
             </DialogBody>
 
-            <DialogFooter>
+            <DialogFooter justifyContent={{ base: "stretch", md: "flex-end" }}>
               <Button
+                w={{ base: "100%", md: "auto" }}
                 colorPalette="blue"
                 onClick={() => {
                   createEvent({ title, description, startDate, endDate });

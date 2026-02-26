@@ -40,7 +40,7 @@ export const UpdateEventModal = ({
       <Portal>
         <DialogBackdrop />
         <DialogPositioner>
-          <DialogContent>
+          <DialogContent w="calc(100% - 2rem)" maxW="500px" mx="4">
             <DialogHeader>
               <DialogTitle>イベントを更新</DialogTitle>
             </DialogHeader>
@@ -76,10 +76,15 @@ export const UpdateEventModal = ({
           />
             </DialogBody>
 
-            <DialogFooter>
+            <DialogFooter
+              flexDirection={{ base: "column", md: "row" }}
+              justifyContent={{ base: "stretch", md: "flex-end" }}
+              gap={{ base: "2", md: "0" }}
+            >
               <Button
                 colorPalette="red"
-                mr="8px"
+                mr={{ base: "0", md: "8px" }}
+                w={{ base: "100%", md: "auto" }}
                 onClick={async () => {
                   await deleteEvent(updateEventId);
                   onClose();
@@ -89,6 +94,7 @@ export const UpdateEventModal = ({
               </Button>
               <Button
                 colorPalette="blue"
+                w={{ base: "100%", md: "auto" }}
                 onClick={() => {
                   updateEvent({
                     updateEventId,

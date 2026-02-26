@@ -1,0 +1,13 @@
+# React
+calendar-web/node_modules
+calendar-web/dist
+
+# Rails
+calendar_api/log
+calendar_api/tmp
+calendar_api/storage
+calendar_api/.env
+calendar_api/config/master.key
+
+# mac
+.DS_Store
